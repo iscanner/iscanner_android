@@ -24,3 +24,9 @@ proguard/
 
 # Log Files
 *.log
+
+#temp
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
