@@ -1,50 +1,45 @@
 package com.github.iscanner.iscanner_android;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-import android.view.View.OnClickListener;
 
-public class MainActivity extends Activity implements OnClickListener {
+public class AboutActivity extends Activity implements OnClickListener {
 	private String TAG = "iscanner";
 	private Button leftButton;
-	private Button rightButton;
+	private TextView title;
 	private TextView copyright;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_about);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);
-		rightButton = (Button) findViewById(R.id.button_second);
-		rightButton.setVisibility(View.VISIBLE);
 		leftButton = (Button) findViewById(R.id.button_first);
-		copyright = (TextView) findViewById(R.id.copyright);
 		leftButton.setOnClickListener(this);
-		rightButton.setOnClickListener(this);
-		copyright.setOnClickListener(this);
+		leftButton.setVisibility(View.VISIBLE);
+		title = (TextView) findViewById(R.id.title);
+		title.setText("About");
+		copyright = (TextView) findViewById(R.id.copyright);
+		copyright.setTextColor(Color.rgb(180, 180, 180));
 		Log.i(TAG, "start loading...");
 	}
 
 	public void onClick(View view) {
 		switch (view.getId()) {
 		case R.id.button_first:
+			finish();
 			break;
 		case R.id.button_second:
-			Intent intentHistory = new Intent(this, HistoryActivity.class);
-			startActivity(intentHistory);
-			break;
-		case R.id.copyright:
-			Intent intentAbout = new Intent(this, AboutActivity.class);
-			startActivity(intentAbout);
 			break;
 		}
 	}

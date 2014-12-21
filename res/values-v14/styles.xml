@@ -4,6 +4,15 @@
         AppBaseTheme from BOTH res/values/styles.xml and
         res/values-v11/styles.xml on API 14+ devices.
     -->
-    <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">        <!-- API 14 theme customizations can go here. -->
+    <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar"> <!-- API 14 theme customizations can go here. -->
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowTitleSize">50dip</item>
+        <item name="android:windowAnimationStyle">@style/activityAnimation</item>
+    </style>
+    <style name="activityAnimation" parent="AppTheme">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_right_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_left_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_left_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_right_out</item>
     </style>
 </resources>

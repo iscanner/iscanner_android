@@ -17,4 +17,14 @@
         android:gravity="center_vertical|center"
         android:text="@string/copyright_content"
         android:textColor="#0074ea" />
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:alpha="0.6"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_logo" />
 </RelativeLayout>

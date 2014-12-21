@@ -7,14 +7,12 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.github.iscanner.iscanner_android.MainActivity" >
-    <TextView
-        android:id="@+id/copyright"
-        android:layout_width="wrap_content"
+    <ListView
+        android:id="@+id/historyListView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="14dp"
-        android:gravity="center_vertical|center"
-        android:text="@string/copyright_content"
-        android:textColor="#0074ea" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" >
+    </ListView>
 </RelativeLayout>
