@@ -1,6 +1,7 @@
 package com.github.iscanner.iscanner_android;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -27,8 +28,15 @@ public class HistoryActivity extends Activity implements OnClickListener {
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.activity_history);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);
+		getSharedPreferences();
 		initView();
 		Log.i(TAG, "start loading...");
+	}
+	
+	public void getSharedPreferences() {
+		SharedPreferences settings = this.getSharedPreferences("localstoregeXML", 0);
+		String list = settings.getString("list", "");
+		Log.i(TAG, list);
 	}
 
 	public void initView() {

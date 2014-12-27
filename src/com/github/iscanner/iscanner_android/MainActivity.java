@@ -1,13 +1,25 @@
 package com.github.iscanner.iscanner_android;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.Vector;
 
+import org.json.JSONArray;  
+import org.json.JSONObject;  
+
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
@@ -28,6 +40,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.zxing.camera.CameraManager;
@@ -35,6 +48,7 @@ import com.zxing.decoding.CaptureActivityHandler;
 import com.zxing.decoding.InactivityTimer;
 import com.zxing.view.ViewfinderView;
 
+@SuppressLint("SimpleDateFormat")
 public class MainActivity extends Activity implements Callback, OnClickListener {
 	private static final String TAG = "iscanner";
 	private CaptureActivityHandler handler;
@@ -53,6 +67,7 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		//saveSharedPreferences();
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.activity_main);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);
@@ -139,10 +154,12 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 								@Override
 								public void onClick(DialogInterface dialog,
 										int which) {
+									saveSharedPreferences();
 									Intent viewIntent = new Intent(
 											"android.intent.action.VIEW", Uri
 													.parse(resultString));
 									startActivity(viewIntent);
+									continuePreview();
 								}
 							})
 					.setNegativeButton("continue",
@@ -184,7 +201,6 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 			hasSurface = true;
 			initCamera(holder);
 		}
-
 	}
 
 	@Override
@@ -208,12 +224,10 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 
 	private void initBeepSound() {
 		if (playBeep && mediaPlayer == null) {
-
 			setVolumeControlStream(AudioManager.STREAM_MUSIC);
 			mediaPlayer = new MediaPlayer();
 			mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 			mediaPlayer.setOnCompletionListener(beepListener);
-
 			AssetFileDescriptor file = getResources().openRawResourceFd(
 					R.raw.beep);
 			try {
@@ -257,6 +271,55 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 			Intent intentAbout = new Intent(this, AboutActivity.class);
 			startActivity(intentAbout);
 			break;
+		}
+	}
+
+	@SuppressLint("CommitPrefEdits")
+	public void saveSharedPreferences() {
+		Date date = new Date();
+		SimpleDateFormat dateFormtter = new SimpleDateFormat("yyyy-MM-dd");
+		SharedPreferences settings = this.getSharedPreferences("localstoregeXML", 0);
+		SharedPreferences.Editor localEditor = settings.edit();
+		String dateString = dateFormtter.format(date);
+		String list = settings.getString("list", "");
+		if (list == "") {
+			List<Map<String, Object>> parentList = new ArrayList<Map<String,Object>>();
+			List<String> childrenList = new ArrayList<String>();
+			childrenList.add("tttest");
+			Map<String, Object> dictionary = new HashMap<String, Object>();
+			dictionary.put(dateString, childrenList);
+			parentList.add(dictionary);
+			String parentListStr = JSON.toJSONString(parentList);
+			localEditor.putString("list", parentListStr);
+			localEditor.commit();
+		} else {
+			Log.i(TAG, list);
+			@SuppressWarnings("rawtypes")
+			List parentList = JSON.parseArray(list);
+			Map<String, List<String>> dictionary = (Map) parentList.get(parentList.size() - 1);
+			Set<String> keys = dictionary.keySet( );  
+			String tempKey = keys.toArray()[0].toString();
+			if (tempKey == dateString) {
+				List<String> childrenList = dictionary.get(tempKey);
+				childrenList.add("test2");
+				Map<String, Object> newDictionary = new HashMap<String, Object>();
+				newDictionary.put(dateString, childrenList);
+				String parentListStr = JSON.toJSONString(parentList);
+				localEditor.putString("list", parentListStr);
+				localEditor.commit();
+			} else {
+				if (parentList.size() == 3) {
+					parentList.remove(0);
+				}
+				List<String> childrenList = new ArrayList<String>();
+				childrenList.add("tttest33");
+				Map<String, Object> newDictionary = new HashMap<String, Object>();
+				dictionary.put(dateString, childrenList);
+				parentList.add(newDictionary);
+				String parentListStr = JSON.toJSONString(parentList);
+				localEditor.putString("list", parentListStr);
+				localEditor.commit();
+			}
 		}
 	}
 
