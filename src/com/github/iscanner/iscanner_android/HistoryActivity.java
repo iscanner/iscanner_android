@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class HistoryActivity extends Activity implements OnClickListener {
-	private String TAG = "iscanner";
+	private static final String TAG = "iscanner";
 	private TextView title;
 	private Button leftButton;
 	private ListView listView;
@@ -27,6 +27,11 @@ public class HistoryActivity extends Activity implements OnClickListener {
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.activity_history);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);
+		initView();
+		Log.i(TAG, "start loading...");
+	}
+
+	public void initView() {
 		title = (TextView) findViewById(R.id.title);
 		title.setText("History");
 		leftButton = (Button) findViewById(R.id.button_first);
@@ -44,7 +49,6 @@ public class HistoryActivity extends Activity implements OnClickListener {
 				Log.i(TAG, "" + arg2);
 			}
 		});
-		Log.i(TAG, "start loading...");
 	}
 
 	public void onClick(View view) {

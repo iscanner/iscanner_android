@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class AboutActivity extends Activity implements OnClickListener {
-	private String TAG = "iscanner";
+	private static final String TAG = "iscanner";
 	private Button leftButton;
 	private TextView title;
 	private TextView copyright;
@@ -24,6 +24,11 @@ public class AboutActivity extends Activity implements OnClickListener {
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.activity_about);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);
+		initView();
+		Log.i(TAG, "start loading...");
+	}
+
+	public void initView() {
 		leftButton = (Button) findViewById(R.id.button_first);
 		leftButton.setOnClickListener(this);
 		leftButton.setVisibility(View.VISIBLE);
@@ -31,7 +36,6 @@ public class AboutActivity extends Activity implements OnClickListener {
 		title.setText("About");
 		copyright = (TextView) findViewById(R.id.copyright);
 		copyright.setTextColor(Color.rgb(180, 180, 180));
-		Log.i(TAG, "start loading...");
 	}
 
 	public void onClick(View view) {
