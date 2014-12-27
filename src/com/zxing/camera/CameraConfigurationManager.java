@@ -74,7 +74,6 @@ final class CameraConfigurationManager {
     setFlash(parameters);
     setZoom(parameters);
     //setSharpness(parameters);
-    //modify here
     camera.setDisplayOrientation(90);
     camera.setParameters(parameters);
   }

@@ -4,12 +4,16 @@ import java.io.IOException;
 import java.util.Vector;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
@@ -102,6 +106,15 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 		CameraManager.get().closeDriver();
 	}
 
+	private void continuePreview() {
+		SurfaceView surfaceView = (SurfaceView) findViewById(R.id.preview_view);
+		SurfaceHolder surfaceHolder = surfaceView.getHolder();
+		initCamera(surfaceHolder);
+		if (handler != null) {
+			handler.restartPreviewAndDecode();
+		}
+	}
+
 	@Override
 	protected void onDestroy() {
 		inactivityTimer.shutdown();
@@ -111,13 +124,37 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 	public void handleDecode(Result result, Bitmap barcode) {
 		inactivityTimer.onActivity();
 		playBeepSoundAndVibrate();
-		String resultString = result.getText();
+		final String resultString = result.getText();
+		final String barcodeFormat = result.getBarcodeFormat().toString();
 		if (resultString.equals("")) {
 			Toast.makeText(MainActivity.this, "Scan failed!",
 					Toast.LENGTH_SHORT).show();
 		} else {
-			Toast.makeText(MainActivity.this, resultString, Toast.LENGTH_SHORT)
-					.show();
+			Dialog alertDialog = new AlertDialog.Builder(this)
+					.setTitle(barcodeFormat)
+					.setMessage(resultString)
+					.setIcon(R.drawable.ic_launcher)
+					.setPositiveButton("ok",
+							new DialogInterface.OnClickListener() {
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									Intent viewIntent = new Intent(
+											"android.intent.action.VIEW", Uri
+													.parse(resultString));
+									startActivity(viewIntent);
+								}
+							})
+					.setNegativeButton("continue",
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									continuePreview();
+								}
+							}).create();
+			alertDialog.show();
 		}
 	}
 
