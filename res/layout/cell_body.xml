@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+    <RelativeLayout
+        android:id="@+id/cell_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp" >
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:height="60dp"
+            android:textColor="@color/grey" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/item_right"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
+        <Button
+            android:id="@+id/create_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@color/lightgray"
+            android:drawableLeft="@drawable/qrcode"
+            android:focusable="false"
+            android:height="60dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:text="@string/create"
+            android:textColor="@color/white"
+            android:width="100dp" />
+        <Button
+            android:id="@+id/copy_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@color/grey"
+            android:drawableLeft="@drawable/copy"
+            android:focusable="false"
+            android:height="60dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:text="@string/copy"
+            android:textColor="@color/white"
+            android:width="100dp" />
+    </RelativeLayout>
+</LinearLayout>

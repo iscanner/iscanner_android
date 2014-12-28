@@ -13,12 +13,25 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="18dp"
         android:gravity="center_vertical|center"
-        android:text="@string/copyright_content"
-        android:textColor="#0074ea" />
+        android:textColor="@color/grey" />
+    <Button
+        android:id="@+id/button_update"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_vertical|center"
+        android:background="@color/transparent"
+        android:layout_marginBottom="0dp"
+        android:height="20dp"
+        android:textSize="14sp"
+        android:text="@string/check_for_update"
+        android:textColor="@color/lightgrey" />
     <ImageView
         android:id="@+id/icon"
+        android:contentDescription="@string/app_name"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_alignParentTop="true"

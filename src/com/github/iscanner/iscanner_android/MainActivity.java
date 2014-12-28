@@ -10,9 +10,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
 
-import org.json.JSONArray;  
-import org.json.JSONObject;  
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -67,7 +64,6 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//saveSharedPreferences();
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.activity_main);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);
@@ -87,7 +83,6 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 		inactivityTimer = new InactivityTimer(this);
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -140,24 +135,25 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 		inactivityTimer.onActivity();
 		playBeepSoundAndVibrate();
 		final String resultString = result.getText();
+		final String pureResultString = resultString.trim();
 		final String barcodeFormat = result.getBarcodeFormat().toString();
-		if (resultString.equals("")) {
+		if (pureResultString.equals("")) {
 			Toast.makeText(MainActivity.this, "Scan failed!",
 					Toast.LENGTH_SHORT).show();
 		} else {
 			Dialog alertDialog = new AlertDialog.Builder(this)
 					.setTitle(barcodeFormat)
-					.setMessage(resultString)
+					.setMessage(pureResultString)
 					.setIcon(R.drawable.ic_launcher)
 					.setPositiveButton("ok",
 							new DialogInterface.OnClickListener() {
 								@Override
 								public void onClick(DialogInterface dialog,
 										int which) {
-									saveSharedPreferences();
+									setSharedPreferences("list", pureResultString);
 									Intent viewIntent = new Intent(
 											"android.intent.action.VIEW", Uri
-													.parse(resultString));
+													.parse(pureResultString));
 									startActivity(viewIntent);
 									continuePreview();
 								}
@@ -274,50 +270,66 @@ public class MainActivity extends Activity implements Callback, OnClickListener 
 		}
 	}
 
+	public void clearSharedPreferences() {
+		SharedPreferences settings = this.getSharedPreferences(
+				"localstoregeXML", 0);
+		SharedPreferences.Editor localEditor = settings.edit();
+		localEditor.putString("list", "");
+		localEditor.commit();
+	}
+
+	@SuppressWarnings("unchecked")
 	@SuppressLint("CommitPrefEdits")
-	public void saveSharedPreferences() {
+	public void setSharedPreferences(String localStorageKey, String resultString) {
 		Date date = new Date();
 		SimpleDateFormat dateFormtter = new SimpleDateFormat("yyyy-MM-dd");
-		SharedPreferences settings = this.getSharedPreferences("localstoregeXML", 0);
+		SharedPreferences settings = this.getSharedPreferences(
+				"localstoregeXML", 0);
 		SharedPreferences.Editor localEditor = settings.edit();
 		String dateString = dateFormtter.format(date);
-		String list = settings.getString("list", "");
+		String list = settings.getString(localStorageKey, "");
 		if (list == "") {
-			List<Map<String, Object>> parentList = new ArrayList<Map<String,Object>>();
+			Log.i(TAG, "list is empty.");
+			List<Map<String, Object>> parentList = new ArrayList<Map<String, Object>>();
 			List<String> childrenList = new ArrayList<String>();
-			childrenList.add("tttest");
+			childrenList.add(resultString);
 			Map<String, Object> dictionary = new HashMap<String, Object>();
 			dictionary.put(dateString, childrenList);
 			parentList.add(dictionary);
 			String parentListStr = JSON.toJSONString(parentList);
-			localEditor.putString("list", parentListStr);
+			Log.i(TAG, "create list " + parentListStr);
+			localEditor.putString(localStorageKey, parentListStr);
 			localEditor.commit();
 		} else {
-			Log.i(TAG, list);
+			Log.i(TAG, "list data is" + list);
 			@SuppressWarnings("rawtypes")
 			List parentList = JSON.parseArray(list);
-			Map<String, List<String>> dictionary = (Map) parentList.get(parentList.size() - 1);
-			Set<String> keys = dictionary.keySet( );  
+			Map<String, List<String>> dictionary = (Map<String, List<String>>) parentList
+					.get(parentList.size() - 1);
+			Set<String> keys = dictionary.keySet();
 			String tempKey = keys.toArray()[0].toString();
-			if (tempKey == dateString) {
+
+			if (tempKey.equals(dateString)) {
+				Log.i(TAG, "old key " + tempKey);
 				List<String> childrenList = dictionary.get(tempKey);
-				childrenList.add("test2");
-				Map<String, Object> newDictionary = new HashMap<String, Object>();
-				newDictionary.put(dateString, childrenList);
+				childrenList.add(resultString);
 				String parentListStr = JSON.toJSONString(parentList);
-				localEditor.putString("list", parentListStr);
+				Log.i(TAG, "update list " + parentListStr);
+				localEditor.putString(localStorageKey, parentListStr);
 				localEditor.commit();
 			} else {
+				Log.i(TAG, "new key " + tempKey);
 				if (parentList.size() == 3) {
 					parentList.remove(0);
 				}
 				List<String> childrenList = new ArrayList<String>();
-				childrenList.add("tttest33");
+				childrenList.add(resultString);
 				Map<String, Object> newDictionary = new HashMap<String, Object>();
-				dictionary.put(dateString, childrenList);
+				newDictionary.put(dateString, childrenList);
 				parentList.add(newDictionary);
 				String parentListStr = JSON.toJSONString(parentList);
-				localEditor.putString("list", parentListStr);
+				Log.i(TAG, "new update list " + parentListStr);
+				localEditor.putString(localStorageKey, parentListStr);
 				localEditor.commit();
 			}
 		}

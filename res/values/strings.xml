@@ -3,6 +3,10 @@
     <string name="app_name">iScanner</string>
     <string name="back_name">back</string>
     <string name="history_name">history</string>
-    <string name="copyright_content">iScanner v1.0\nby xdf</string>
+    <string name="copyright_content">iScanner by xdf</string>
     <string name="action_settings">Settings</string>
+    <string name="tip_content">tap to close or screenshot</string>
+    <string name="create">create</string>
+    <string name="copy">copy</string>
+    <string name="check_for_update">update?</string>
 </resources>
