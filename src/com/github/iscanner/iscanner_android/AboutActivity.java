@@ -36,19 +36,18 @@ import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 
 public class AboutActivity extends Activity implements OnClickListener {
+	private static final String API = "http://iscanner.github.io/api/latest.json";
 	private static final String TAG = "iscanner";
 	private Button leftButton;
+	private Button updateButton;
 	private TextView title;
 	private TextView copyright;
-	private Button updateButton;
-	private static final String API = "http://iscanner.github.io/api/latest.json";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_about);
-		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);
 		initView();
 		Log.i(TAG, "start loading...");
 	}

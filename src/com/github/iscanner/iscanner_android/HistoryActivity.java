@@ -52,9 +52,8 @@ public class HistoryActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_history);
-		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);
 		getSharedPreferences("list");
 		initView();
 		Log.i(TAG, "start loading...");
@@ -137,6 +136,7 @@ public class HistoryActivity extends Activity implements OnClickListener {
 				imgImageView.setAnimation(animationAlpha);
 			}
 
+			@SuppressWarnings("deprecation")
 			@Override
 			public void clickCopyButton(View view, int position) {
 				ClipboardManager c = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);

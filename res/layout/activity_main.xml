@@ -2,7 +2,13 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#ffffff">
+    android:background="#ffffff" >
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal" >
+        <include layout="@layout/title" />
+    </LinearLayout>
     <SurfaceView
         android:id="@+id/preview_view"
         android:layout_width="300dp"
@@ -18,14 +24,14 @@
         android:layout_gravity="center"
         android:orientation="vertical" >
         <TextView
-        android:id="@+id/copyright"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="14dp"
-        android:gravity="center_vertical|center"
-        android:text="@string/copyright_content"
-        android:textColor="#0074ea" />
+            android:id="@+id/copyright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="14dp"
+            android:gravity="center_vertical|center"
+            android:text="@string/copyright_content"
+            android:textColor="#0074ea" />
     </RelativeLayout>
 </FrameLayout>

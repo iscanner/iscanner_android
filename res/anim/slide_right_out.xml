@@ -3,5 +3,6 @@
     <translate
         android:duration="200"
         android:fromXDelta="0.0"
+        android:interpolator="@android:anim/accelerate_interpolator"
         android:toXDelta="100.0%p" />
 </set>
