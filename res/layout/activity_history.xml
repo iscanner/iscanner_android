@@ -9,7 +9,7 @@
     <com.github.iscanner.iscanner_android.SwipeableCell
         android:id="@+id/historyListView"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/qr_dialog"
         android:layout_below="@id/title_layout"
         android:divider="#dddbdb"
