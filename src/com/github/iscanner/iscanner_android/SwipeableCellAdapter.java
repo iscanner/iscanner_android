@@ -59,8 +59,8 @@ public class SwipeableCellAdapter extends BaseAdapter {
 			holder.needTouch = true;
 		}
 		if (!holder.needTouch) {
-			convertView = LayoutInflater.from(mContext).inflate(R.layout.cell_header,
-					parent, false);
+			convertView = LayoutInflater.from(mContext).inflate(
+					R.layout.cell_header, parent, false);
 			holder.cell_content = (RelativeLayout) convertView
 					.findViewById(R.id.cell_content);
 			holder.content = (TextView) convertView.findViewById(R.id.content);

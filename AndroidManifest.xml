@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.github.iscanner.iscanner_android"
     android:versionCode="1"
-    android:versionName="1.2.0" >
+    android:versionName="1.3.0" >
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="21" />
@@ -26,9 +26,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HistoryActivity" >
+        <activity
+            android:name=".HistoryActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" >
         </activity>
-        <activity android:name=".AboutActivity" >
+        <activity
+            android:name=".AboutActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" >
         </activity>
     </application>
 </manifest>

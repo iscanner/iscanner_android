@@ -80,9 +80,7 @@ public final class ViewfinderView extends View {
 		}
 		int width = canvas.getWidth();
 		int height = canvas.getHeight();
-		int linewidht = 4;
-		int offsetX = 10;
-		int length = 20;
+
 		// Draw the exterior (i.e. outside the framing rect) darkened
 		paint.setColor(resultBitmap != null ? resultColor : maskColor);
 		canvas.drawRect(0, 0, width, frame.top, paint);
@@ -99,34 +97,15 @@ public final class ViewfinderView extends View {
 
 			// Draw a two pixel solid black border inside the framing rect
 			paint.setColor(frameColor);
-			canvas.drawRect(offsetX + frame.left, offsetX + frame.top, offsetX
-					+ (linewidht + frame.left), offsetX + (length + frame.top),
-					paint);
-			canvas.drawRect(offsetX + frame.left, offsetX + frame.top, offsetX
-					+ (length + frame.left), offsetX + (linewidht + frame.top),
-					paint);
-			canvas.drawRect(-offsetX + ((0 - linewidht) + frame.right), offsetX
-					+ frame.top, -offsetX + (1 + frame.right), offsetX
-					+ (length + frame.top), paint);
-			canvas.drawRect(-offsetX + (-length + frame.right), offsetX
-					+ frame.top, -offsetX + frame.right, offsetX
-					+ (linewidht + frame.top), paint);
-			canvas.drawRect(offsetX + frame.left, -offsetX
-					+ (1 - length + frame.bottom), offsetX
-					+ (linewidht + frame.left), -offsetX + (1 + frame.bottom),
-					paint);
-			canvas.drawRect(offsetX + frame.left, -offsetX
-					+ ((0 - linewidht) + frame.bottom), offsetX
-					+ (length + frame.left), -offsetX + (1 + frame.bottom),
-					paint);
-			canvas.drawRect(-offsetX + ((0 - linewidht) + frame.right),
-					-offsetX + (-19 + frame.bottom), -offsetX
-							+ (1 + frame.right), -offsetX + (1 + frame.bottom),
-					paint);
-			canvas.drawRect(-offsetX + (-length + frame.right), -offsetX
-					+ ((0 - linewidht) + frame.bottom), -offsetX + frame.right,
-					-offsetX + (linewidht - (linewidht - 1) + frame.bottom),
-					paint);
+			canvas.drawRect(frame.left, frame.top, frame.right + 1,
+					frame.top + 2, paint);
+			canvas.drawRect(frame.left, frame.top + 2, frame.left + 2,
+					frame.bottom - 1, paint);
+			canvas.drawRect(frame.right - 1, frame.top, frame.right + 1,
+					frame.bottom - 1, paint);
+			canvas.drawRect(frame.left, frame.bottom - 1, frame.right + 1,
+					frame.bottom + 1, paint);
+
 			// Draw a red "laser scanner" line through the middle to show
 			// decoding is active
 			paint.setColor(laserColor);
