@@ -30,3 +30,12 @@ proguard/
 *.swo
 .DS_Store
 Thumbs.db
+
+*/keystore
+custom-versions/*
+
+license.properties
+lint.xml
+*.iml
+.idea
+*~
