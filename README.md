@@ -1,11 +1,12 @@
-iScanner
-========
+# iScanner
+
+---
 
 An easy-to-use scanner app for android.
 
 ## Installation
 
-Installation instructions are [on the homepage](http://iscanner.github.io/).
+Installation instructions are [on the homepage](//iscanner.github.io/).
 
 ## Features
 
@@ -28,11 +29,9 @@ Installation instructions are [on the homepage](http://iscanner.github.io/).
 
 Thanks to:
 
-- [zxing](https://github.com/zxing/zxing)
-- [iscanner_ios](https://github.com/iscanner/iscanner_ios)
+- [zxing](//github.com/zxing/zxing)
+- [iscanner_ios](//github.com/iscanner/iscanner_ios)
 
 ## License
 
 The MIT License (MIT)
-
-Copyright (c) 2014 xdf
