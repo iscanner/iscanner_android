@@ -26,8 +26,6 @@ proguard/
 *.log
 
 #temp
-*.swp
-*.swo
 .DS_Store
 Thumbs.db
 
@@ -39,3 +37,6 @@ lint.xml
 *.iml
 .idea
 *~
+
+*.sw*
+*.un~

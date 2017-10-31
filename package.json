@@ -1,0 +1,14 @@
+{
+  "name": "iscanner_android",
+  "version": "1.0.0",
+  "description": "icanner android",
+  "keywords": [
+    "android",
+    "icanner"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/iscanner/iscanner_android.git"
+  },
+  "license": "MIT"
+}

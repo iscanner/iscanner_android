@@ -1,0 +1,10 @@
+*.sw*
+*.un~
+
+app/libs/
+app/src/
+app/build/generated/
+app/build/intermediates
+gradle/
+screenshot/
+build/
