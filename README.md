@@ -20,17 +20,15 @@ Installation instructions are [on the homepage](//iscanner.github.io/).
 
 ## CDN Download
 
-```
-https://npmcdn.com/iscanner_android@latest/app/build/outputs/apk/debug/app-debug.apk
-```
+- [download link](//npmcdn.com/iscanner_android@latest/app/build/outputs/apk/debug/app-debug.apk)
 
 ## Screenshot
 
-<img src="//raw.githubusercontent.com/iscanner/iscanner_android/master/screenshot/launch.png" width="50%"/>
-<img src="//raw.githubusercontent.com/iscanner/iscanner_android/master/screenshot/scan.png" width="50%"/>
-<img src="//raw.githubusercontent.com/iscanner/iscanner_android/master/screenshot/history.png" width="50%"/>
-<img src="//raw.githubusercontent.com/iscanner/iscanner_android/master/screenshot/copy.png" width="50%"/>
-<img src="//raw.githubusercontent.com/iscanner/iscanner_android/master/screenshot/create.png" width="50%"/>
+<img src="https://raw.githubusercontent.com/iscanner/iscanner_android/master/screenshot/launch.png" width="50%"/>
+<img src="https://raw.githubusercontent.com/iscanner/iscanner_android/master/screenshot/scan.png" width="50%"/>
+<img src="https://raw.githubusercontent.com/iscanner/iscanner_android/master/screenshot/history.png" width="50%"/>
+<img src="https://raw.githubusercontent.com/iscanner/iscanner_android/master/screenshot/copy.png" width="50%"/>
+<img src="https://raw.githubusercontent.com/iscanner/iscanner_android/master/screenshot/create.png" width="50%"/>
 
 Thanks to:
 
