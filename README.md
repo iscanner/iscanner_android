@@ -24,11 +24,7 @@ Installation instructions are [on the homepage](//iscanner.github.io/).
 
 ## Screenshot
 
-<img src="https://raw.githubusercontent.com/iscanner/iscanner_android/master/screenshot/launch.png" width="50%"/>
-<img src="https://raw.githubusercontent.com/iscanner/iscanner_android/master/screenshot/scan.png" width="50%"/>
-<img src="https://raw.githubusercontent.com/iscanner/iscanner_android/master/screenshot/history.png" width="50%"/>
-<img src="https://raw.githubusercontent.com/iscanner/iscanner_android/master/screenshot/copy.png" width="50%"/>
-<img src="https://raw.githubusercontent.com/iscanner/iscanner_android/master/screenshot/create.png" width="50%"/>
+<img src="https://raw.githubusercontent.com/iscanner/iscanner_android/master/screenshot/launch.png" width="20%"/><img src="https://raw.githubusercontent.com/iscanner/iscanner_android/master/screenshot/scan.png" width="20%"/><img src="https://raw.githubusercontent.com/iscanner/iscanner_android/master/screenshot/history.png" width="20%"/><img src="https://raw.githubusercontent.com/iscanner/iscanner_android/master/screenshot/copy.png" width="20%"/><img src="https://raw.githubusercontent.com/iscanner/iscanner_android/master/screenshot/create.png" width="20%"/>
 
 Thanks to:
 
