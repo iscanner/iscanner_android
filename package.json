@@ -10,5 +10,11 @@
     "type": "git",
     "url": "git://github.com/iscanner/iscanner_android.git"
   },
-  "license": "MIT"
+  "scripts": {
+    "contributor": "git-contributor"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "git-contributor": "^1.0.8"
+  }
 }
