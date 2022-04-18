@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion '26.0.2'
 
     defaultConfig {
         applicationId "com.github.iscanner.iscanner_android"
@@ -19,6 +18,6 @@ android {
 }
 
 dependencies {
-    compile files('libs/fastjson-1.1.33.android.jar')
-    compile files('libs/zxing-core.jar')
+    implementation files('libs/fastjson-1.1.33.android.jar')
+    implementation files('libs/zxing-core.jar')
 }

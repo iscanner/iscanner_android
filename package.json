@@ -15,6 +15,6 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "git-contributor": "^1.0.8"
+    "git-contributor": "1"
   }
 }
